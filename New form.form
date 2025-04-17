@@ -1,0 +1,22 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "6ad2448"
+  },
+  "schemaVersion": 18,
+  "id": "Form_0cfbp7p",
+  "components": [
+    {
+      "text": "# 🥳 Congrats - You win a fact:\n\n## {{randomFact}}",
+      "type": "text",
+      "layout": {
+        "row": "Row_0mqs650",
+        "columns": null
+      },
+      "id": "Field_1v9tyqe"
+    }
+  ],
+  "type": "default"
+}

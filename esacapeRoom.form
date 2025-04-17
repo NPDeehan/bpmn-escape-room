@@ -1,0 +1,362 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "6ad2448"
+  },
+  "schemaVersion": 18,
+  "id": "escape-the-room-02ig2n0",
+  "components": [
+    {
+      "text": "# 🔏 Welcome To The Escape Room\nSimply fill in the form to escape the room - You have two minutes",
+      "type": "text",
+      "layout": {
+        "row": "Row_1gz2430",
+        "columns": null
+      },
+      "id": "Field_1f0yxq5"
+    },
+    {
+      "label": "Your Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_13sqyqz",
+        "columns": null
+      },
+      "id": "Field_1rvub60",
+      "key": "name"
+    },
+    {
+      "label": "Country",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_13sqyqz",
+        "columns": null
+      },
+      "id": "Field_0832p9c",
+      "key": "location",
+      "description": "What country do you live in?",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Best Number?",
+      "type": "number",
+      "layout": {
+        "row": "Row_1jy7l3w",
+        "columns": null
+      },
+      "id": "Field_1uq8du6",
+      "key": "bestNumber",
+      "description": "What do you think is the best number?",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Optional Tick Box",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_1jy7l3w",
+        "columns": null
+      },
+      "id": "Field_17k5kly",
+      "key": "optional",
+      "description": "This tickbox if completely optional - if you like ticking boxes, then this is the box for you!"
+    },
+    {
+      "type": "separator",
+      "layout": {
+        "row": "Row_05nn2vy",
+        "columns": null
+      },
+      "id": "Field_005bfs3"
+    },
+    {
+      "text": "### A Door Opens... 👻\nA ghost asks you a question... What does BPMN stand for?",
+      "type": "text",
+      "layout": {
+        "row": "Row_010b722",
+        "columns": null
+      },
+      "id": "Field_00vdkat",
+      "conditional": {
+        "hide": "=not(string length(name) > 2 and string length(location) > 2)"
+      }
+    },
+    {
+      "label": "Umm.. It's one of these?",
+      "values": [
+        {
+          "label": "Brilliant Pants Moderate Napkins",
+          "value": "pants"
+        },
+        {
+          "label": "Bad Planning Makes Nothing",
+          "value": "bad"
+        },
+        {
+          "label": "Business Process Model and Notation",
+          "value": "correct"
+        },
+        {
+          "label": "Business Process Modeling Notation",
+          "value": "Colour"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_03eosd8",
+        "columns": null
+      },
+      "id": "Field_1ld46qp",
+      "key": "bpmn",
+      "conditional": {
+        "hide": "=not(string length(name) > 2 and string length(location) > 2)"
+      },
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Unlock the Door",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_0sq8q4j",
+        "columns": null
+      },
+      "id": "Field_0k4sidw",
+      "key": "unlockOne",
+      "conditional": {
+        "hide": "=not(bpmn = \"correct\")"
+      },
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Room Two.. ",
+      "components": [
+        {
+          "text": "### You see two flags on the wall.. which countries do they belong to",
+          "type": "text",
+          "layout": {
+            "row": "Row_0ld8okr",
+            "columns": null
+          },
+          "id": "Field_1msq7ec"
+        },
+        {
+          "type": "image",
+          "layout": {
+            "row": "Row_0ld8okr",
+            "columns": null
+          },
+          "id": "Field_1lkb2m3",
+          "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/2560px-Flag_of_Canada_%28Pantone%29.svg.png"
+        },
+        {
+          "type": "image",
+          "layout": {
+            "row": "Row_0ld8okr",
+            "columns": null
+          },
+          "id": "Field_1d03fu3",
+          "source": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/1920px-Flag_of_Japan.svg.png"
+        },
+        {
+          "label": "Countries You Remember..",
+          "values": [
+            {
+              "label": "United Kingdom",
+              "value": "united kingdom"
+            },
+            {
+              "label": "United States of America",
+              "value": "united states of america"
+            },
+            {
+              "label": "Australia",
+              "value": "australia"
+            },
+            {
+              "label": "New Zealand",
+              "value": "new zealand"
+            },
+            {
+              "label": "Norway",
+              "value": "norway"
+            },
+            {
+              "label": "Liberia",
+              "value": "liberia"
+            },
+            {
+              "label": "Madagascar",
+              "value": "madagascar"
+            },
+            {
+              "label": "Thailand",
+              "value": "thailand"
+            },
+            {
+              "label": "Costa Rica",
+              "value": "costa rica"
+            },
+            {
+              "label": "Chile",
+              "value": "chile"
+            },
+            {
+              "label": "Japan",
+              "value": "japan"
+            },
+            {
+              "label": "Canada",
+              "value": "canada"
+            }
+          ],
+          "type": "taglist",
+          "layout": {
+            "row": "Row_14sbjxf",
+            "columns": null
+          },
+          "id": "Field_0011fbt",
+          "key": "flags",
+          "validate": {
+            "required": true
+          }
+        }
+      ],
+      "showOutline": true,
+      "type": "group",
+      "layout": {
+        "row": "Row_0ub0e19",
+        "columns": null
+      },
+      "id": "Field_0fifnyw",
+      "conditional": {
+        "hide": "=not(unlockOne)"
+      }
+    },
+    {
+      "label": "Open Final Room",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_1g2h5pf",
+        "columns": null
+      },
+      "id": "Field_0coxr8b",
+      "key": "unlockTwo",
+      "conditional": {
+        "hide": "=not(list contains(flags, \"japan\") and list contains(flags, \"canada\"))"
+      },
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Room Three",
+      "components": [
+        {
+          "text": "# Password Required!",
+          "type": "text",
+          "layout": {
+            "row": "Row_019qfhq",
+            "columns": null
+          },
+          "id": "Field_0e4ptim"
+        },
+        {
+          "label": "password",
+          "type": "textfield",
+          "layout": {
+            "row": "Row_019qfhq",
+            "columns": null
+          },
+          "id": "Field_0vs3tgc",
+          "key": "password",
+          "validate": {
+            "required": true,
+            "minLength": "10",
+            "maxLength": "10",
+            "pattern": "Camunda123"
+          }
+        },
+        {
+          "label": "Password Hints",
+          "values": [
+            {
+              "label": "Start",
+              "value": "start"
+            },
+            {
+              "label": "Middle",
+              "value": "mid"
+            },
+            {
+              "label": "End",
+              "value": "end"
+            }
+          ],
+          "type": "radio",
+          "layout": {
+            "row": "Row_00s2vmo",
+            "columns": null
+          },
+          "id": "Field_1c2tnzy",
+          "key": "passwordPart"
+        },
+        {
+          "text": "# Cam",
+          "type": "text",
+          "layout": {
+            "row": "Row_00s2vmo",
+            "columns": null
+          },
+          "id": "Field_0xdfdcs",
+          "conditional": {
+            "hide": "=not(passwordPart = \"start\")"
+          }
+        },
+        {
+          "text": "# ????",
+          "type": "text",
+          "layout": {
+            "row": "Row_00s2vmo",
+            "columns": null
+          },
+          "id": "Field_0f55zmp",
+          "conditional": {
+            "hide": "=not(passwordPart = \"mid\")"
+          }
+        },
+        {
+          "text": "# 123",
+          "type": "text",
+          "layout": {
+            "row": "Row_00s2vmo",
+            "columns": null
+          },
+          "id": "Field_00hu5hl",
+          "conditional": {
+            "hide": "=not(passwordPart = \"end\")"
+          }
+        }
+      ],
+      "showOutline": true,
+      "type": "group",
+      "layout": {
+        "row": "Row_055xrvd",
+        "columns": null
+      },
+      "id": "Field_1c5nmol",
+      "conditional": {
+        "hide": "=not(unlockTwo)"
+      }
+    }
+  ],
+  "type": "default"
+}

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_0qgsrx8" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="6ad2448" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.7.0">
+  <decision id="check-score-04jkqeu" name="Check Score">
+    <informationRequirement id="InformationRequirement_0whs3x6">
+      <requiredInput href="#InputData_1jendux" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1kgw93a">
+      <requiredInput href="#InputData_0o0891b" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1b4c87o">
+      <requiredInput href="#InputData_0l3b8nn" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0mflc9i" hitPolicy="COLLECT" aggregation="SUM">
+      <input id="Input_1" label="Opition Tick Box">
+        <inputExpression id="InputExpression_1" typeRef="boolean">
+          <text>optional</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1yhzlta" label="Best Number">
+        <inputExpression id="LiteralExpression_0x8qjnz" typeRef="string">
+          <text>bestNumber</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_124evgj" label="Location">
+        <inputExpression id="LiteralExpression_0r4gqa4" typeRef="string">
+          <text>location</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Final Score" name="score" typeRef="number" />
+      <rule id="DecisionRule_15ejcjz">
+        <description>Your love of tickboxs has scored you a point!</description>
+        <inputEntry id="UnaryTests_10ki0an">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0uwyd6z">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0b2erkg">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1p75f1u">
+          <text>1</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_06a26z1">
+        <description>Don't Panic!</description>
+        <inputEntry id="UnaryTests_1rbx4my">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1euquua">
+          <text>42</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vg0q0o">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_02wmzln">
+          <text>1</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1s85mh1">
+        <description>Low numbers are good numbers</description>
+        <inputEntry id="UnaryTests_100vw61">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10piaf6">
+          <text>[1.. 25]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jl64zt">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0zx1u9l">
+          <text>1</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_06lw2wc">
+        <description>These are places that Niall likes </description>
+        <inputEntry id="UnaryTests_0uoywo1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17r28k5">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0rk00rd">
+          <text>"Ireland","Germany","India","South Africa"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0f8gpjn">
+          <text>1</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0p7mf87">
+        <description>Just for escaping your get a free point!</description>
+        <inputEntry id="UnaryTests_028hgye">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1oaup6r">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vefb6g">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0306xk2">
+          <text>1</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_1jendux" name="Optional Tick Box" />
+  <inputData id="InputData_0o0891b" name="Best Number" />
+  <inputData id="InputData_0l3b8nn" name="Location" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="check-score-04jkqeu">
+        <dc:Bounds height="80" width="180" x="370" y="180" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_17ap7cb" dmnElementRef="InputData_1jendux">
+        <dc:Bounds height="45" width="125" x="158" y="78" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_18lrb21" dmnElementRef="InformationRequirement_0whs3x6">
+        <di:waypoint x="221" y="123" />
+        <di:waypoint x="415" y="160" />
+        <di:waypoint x="415" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1lyvyel" dmnElementRef="InputData_0o0891b">
+        <dc:Bounds height="45" width="125" x="418" y="38" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_05t23fl" dmnElementRef="InformationRequirement_1kgw93a">
+        <di:waypoint x="481" y="83" />
+        <di:waypoint x="460" y="160" />
+        <di:waypoint x="460" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0xrjhm9" dmnElementRef="InputData_0l3b8nn">
+        <dc:Bounds height="45" width="125" x="628" y="68" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1l9nxj3" dmnElementRef="InformationRequirement_1b4c87o">
+        <di:waypoint x="691" y="113" />
+        <di:waypoint x="505" y="160" />
+        <di:waypoint x="505" y="180" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

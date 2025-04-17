@@ -1,0 +1,149 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "334bbc3"
+  },
+  "schemaVersion": 18,
+  "id": "escape-the-room",
+  "components": [
+    {
+      "text": "# Welcome To The Escape Room\nSimply fill in the form to escape the room",
+      "type": "text",
+      "layout": {
+        "row": "Row_1gz2430",
+        "columns": null
+      },
+      "id": "Field_1f0yxq5"
+    },
+    {
+      "label": "Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_13sqyqz",
+        "columns": null
+      },
+      "id": "Field_0v38o1o",
+      "key": "name",
+      "description": "Enter your name",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Location",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_13sqyqz",
+        "columns": null
+      },
+      "id": "Field_0832p9c",
+      "key": "location",
+      "description": "Where are you from",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "type": "separator",
+      "layout": {
+        "row": "Row_05nn2vy",
+        "columns": null
+      },
+      "id": "Field_005bfs3"
+    },
+    {
+      "text": "### A Door Opens... 👻",
+      "type": "text",
+      "layout": {
+        "row": "Row_010b722",
+        "columns": null
+      },
+      "id": "Field_00vdkat",
+      "conditional": {
+        "hide": "=not(string length(name) > 2 and string length(location) > 2)"
+      }
+    },
+    {
+      "label": "What Does BPMN Stand For?",
+      "values": [
+        {
+          "label": "Brilliant Pants Moderate Napkins",
+          "value": "pants"
+        },
+        {
+          "label": "Bad Planning Makes Nothing",
+          "value": "bad"
+        },
+        {
+          "label": "Business Process Model and Notation",
+          "value": "correct"
+        },
+        {
+          "label": "Business Process Modeling Notation",
+          "value": "Colour"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_03eosd8",
+        "columns": null
+      },
+      "id": "Field_1ld46qp",
+      "key": "bpmn",
+      "conditional": {
+        "hide": "=not(string length(name) > 2 and string length(location) > 2)"
+      }
+    },
+    {
+      "label": "Unlock the Door",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_0sq8q4j",
+        "columns": null
+      },
+      "id": "Field_0k4sidw",
+      "key": "unlockOne",
+      "conditional": {
+        "hide": "=not(bpmn = \"correct\")"
+      }
+    },
+    {
+      "type": "separator",
+      "layout": {
+        "row": "Row_1deebnc",
+        "columns": null
+      },
+      "id": "Field_19dixkq"
+    },
+    {
+      "computeOn": "change",
+      "type": "expression",
+      "layout": {
+        "row": "Row_1ylumza",
+        "columns": null
+      },
+      "id": "Field_1ily41l",
+      "key": "countries",
+      "expression": "=[\n    {\n      \"label\": \"United Kingdom\",\n      \"value\": \"united kingdom\"\n    },\n    {\n      \"label\": \"United States of America\",\n      \"value\": \"united states of america\"\n    },\n    {\n      \"label\": \"Australia\",\n      \"value\": \"australia\"\n    },\n    {\n      \"label\": \"New Zealand\",\n      \"value\": \"new zealand\"\n    },\n    {\n      \"label\": \"Norway\",\n      \"value\": \"norway\"\n    },\n    {\n      \"label\": \"Liberia\",\n      \"value\": \"liberia\"\n    },\n    {\n      \"label\": \"Madagascar\",\n      \"value\": \"madagascar\"\n    },\n    {\n      \"label\": \"Thailand\",\n      \"value\": \"thailand\"\n    },\n    {\n      \"label\": \"Costa Rica\",\n      \"value\": \"costa rica\"\n    },\n    {\n      \"label\": \"Chile\",\n      \"value\": \"chile\"\n    }\n  ]"
+    },
+    {
+      "label": "Select Contries with Red and White flags",
+      "values": [
+        {
+          "label": "Value",
+          "value": "value"
+        }
+      ],
+      "type": "taglist",
+      "layout": {
+        "row": "Row_11hubwp",
+        "columns": null
+      },
+      "id": "Field_0011fbt",
+      "key": "taglist_et6uf"
+    }
+  ],
+  "type": "default"
+}

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="6ad2448" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.7.0">
+  <bpmn:process id="EscapeRoom" name="Escape Room Process" isExecutable="true">
+    <bpmn:boundaryEvent id="Event_1jb7yon" name="2 Mins" attachedToRef="Activity_0q51eco">
+      <bpmn:outgoing>Flow_08bkvlj</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_06oiu49">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT2M</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:boundaryEvent>
+    <bpmn:businessRuleTask id="Activity_1c4f4ax" name="Check Score">
+      <bpmn:extensionElements>
+        <zeebe:calledDecision decisionId="check-score-04jkqeu" resultVariable="score" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1q51lz3</bpmn:incoming>
+      <bpmn:outgoing>Flow_0nh3bzf</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:startEvent id="StartEvent_1" name="Escape Room Started">
+      <bpmn:outgoing>Flow_1h9dint</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Activity_0q51eco" name="Escape the Room">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:formDefinition formId="escape-the-room-02ig2n0" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1h9dint</bpmn:incoming>
+      <bpmn:outgoing>Flow_1q51lz3</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_1ibaclx" name="Escaped">
+      <bpmn:incoming>Flow_0isywsg</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_0dyyogl" name="Escaped with High Score">
+      <bpmn:incoming>Flow_1cob2y3</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_08bkvlj" sourceRef="Event_1jb7yon" targetRef="Event_1c7su8l" />
+    <bpmn:sequenceFlow id="Flow_0mmhtu8" sourceRef="Activity_14d03nz" targetRef="Activity_00qe9ta" />
+    <bpmn:sequenceFlow id="Flow_0nh3bzf" sourceRef="Activity_1c4f4ax" targetRef="Gateway_069odf3" />
+    <bpmn:sequenceFlow id="Flow_1dy184d" sourceRef="Gateway_069odf3" targetRef="Activity_14d03nz">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=score &gt; 2</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1h9dint" sourceRef="StartEvent_1" targetRef="Activity_0q51eco" />
+    <bpmn:sequenceFlow id="Flow_1q51lz3" sourceRef="Activity_0q51eco" targetRef="Activity_1c4f4ax" />
+    <bpmn:exclusiveGateway id="Gateway_069odf3" name="High Score?" default="Flow_0isywsg">
+      <bpmn:incoming>Flow_0nh3bzf</bpmn:incoming>
+      <bpmn:outgoing>Flow_1dy184d</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0isywsg</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0isywsg" name="No" sourceRef="Gateway_069odf3" targetRef="Event_1ibaclx" />
+    <bpmn:serviceTask id="Activity_14d03nz" name="Get Prize" zeebe:modelerTemplate="io.camunda.connectors.HttpJson.v2" zeebe:modelerTemplateVersion="10" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE3LjAzMzUgOC45OTk5N0MxNy4wMzM1IDEzLjQ0NzUgMTMuNDI4MSAxNy4wNTI5IDguOTgwNjUgMTcuMDUyOUM0LjUzMzE2IDE3LjA1MjkgMC45Mjc3NjUgMTMuNDQ3NSAwLjkyNzc2NSA4Ljk5OTk3QzAuOTI3NzY1IDQuNTUyNDggNC41MzMxNiAwLjk0NzA4MyA4Ljk4MDY1IDAuOTQ3MDgzQzEzLjQyODEgMC45NDcwODMgMTcuMDMzNSA0LjU1MjQ4IDE3LjAzMzUgOC45OTk5N1oiIGZpbGw9IiM1MDU1NjIiLz4KPHBhdGggZD0iTTQuOTMxMjYgMTQuMTU3MUw2Ljc4MTA2IDMuNzE0NzFIMTAuMTM3NUMxMS4xOTE3IDMuNzE0NzEgMTEuOTgyNCAzLjk4MzIzIDEyLjUwOTUgNC41MjAyN0MxMy4wNDY1IDUuMDQ3MzYgMTMuMzE1IDUuNzMzNTggMTMuMzE1IDYuNTc4OTJDMTMuMzE1IDcuNDQ0MTQgMTMuMDcxNCA4LjE1NTIyIDEyLjU4NDEgOC43MTIxNUMxMi4xMDY3IDkuMjU5MTMgMTEuNDU1MyA5LjYzNzA1IDEwLjYyOTggOS44NDU5TDEyLjA2MTkgMTQuMTU3MUgxMC4zMzE1TDkuMDMzNjQgMTAuMDI0OUg3LjI0MzUxTDYuNTEyNTQgMTQuMTU3MUg0LjkzMTI2Wk03LjQ5NzExIDguNTkyODFIOS4yNDI0OEM5Ljk5ODMyIDguNTkyODEgMTAuNTkwMSA4LjQyMzc0IDExLjAxNzcgOC4wODU2MUMxMS40NTUzIDcuNzM3NTMgMTEuNjc0MSA3LjI2NTEzIDExLjY3NDEgNi42Njg0MkMxMS42NzQxIDYuMTkxMDYgMTEuNTI0OSA1LjgxODExIDExLjIyNjUgNS41NDk1OUMxMC45MjgyIDUuMjcxMTMgMTAuNDU1OCA1LjEzMTkgOS44MDkzNiA1LjEzMTlIOC4xMDg3NEw3LjQ5NzExIDguNTkyODFaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="io.camunda:http-json:1" retries="3" />
+        <zeebe:ioMapping>
+          <zeebe:input source="noAuth" target="authentication.type" />
+          <zeebe:input source="GET" target="method" />
+          <zeebe:input source="https://uselessfacts.jsph.pl/api/v2/facts/random" target="url" />
+          <zeebe:input source="=false" target="storeResponse" />
+          <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
+          <zeebe:input source="=20" target="readTimeoutInSeconds" />
+          <zeebe:input source="=false" target="ignoreNullValues" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="resultExpression" value="={randomFact : response.body.text}" />
+          <zeebe:header key="retryBackoff" value="PT0S" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1dy184d</bpmn:incoming>
+      <bpmn:outgoing>Flow_0mmhtu8</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_1c7su8l" name="You&#39;ve failed to escape on time">
+      <bpmn:incoming>Flow_08bkvlj</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1cob2y3" sourceRef="Activity_00qe9ta" targetRef="Event_0dyyogl" />
+    <bpmn:userTask id="Activity_00qe9ta" name="Collect Prize">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:formDefinition formId="Form_0cfbp7p" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0mmhtu8</bpmn:incoming>
+      <bpmn:outgoing>Flow_1cob2y3</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="EscapeRoom">
+      <bpmndi:BPMNShape id="Activity_0z0jboz_di" bpmnElement="Activity_1c4f4ax">
+        <dc:Bounds x="400" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="150" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="132" y="143" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1pz8wc1_di" bpmnElement="Activity_0q51eco">
+        <dc:Bounds x="240" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ibaclx_di" bpmnElement="Event_1ibaclx">
+        <dc:Bounds x="682" y="212" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="679" y="255" width="43" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0dyyogl_di" bpmnElement="Event_0dyyogl">
+        <dc:Bounds x="1012" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="996" y="143" width="69" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_069odf3_di" bpmnElement="Gateway_069odf3" isMarkerVisible="true">
+        <dc:Bounds x="565" y="93" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="559" y="69" width="61" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1x1yuxf_di" bpmnElement="Activity_14d03nz">
+        <dc:Bounds x="680" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1c7su8l_di" bpmnElement="Event_1c7su8l">
+        <dc:Bounds x="362" y="222" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="342" y="265" width="77" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_01txibn_di" bpmnElement="Activity_00qe9ta">
+        <dc:Bounds x="840" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1jb7yon_di" bpmnElement="Event_1jb7yon">
+        <dc:Bounds x="272" y="140" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="243" y="183" width="33" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_08bkvlj_di" bpmnElement="Flow_08bkvlj">
+        <di:waypoint x="290" y="176" />
+        <di:waypoint x="290" y="240" />
+        <di:waypoint x="362" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mmhtu8_di" bpmnElement="Flow_0mmhtu8">
+        <di:waypoint x="780" y="118" />
+        <di:waypoint x="840" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0nh3bzf_di" bpmnElement="Flow_0nh3bzf">
+        <di:waypoint x="500" y="118" />
+        <di:waypoint x="565" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1dy184d_di" bpmnElement="Flow_1dy184d">
+        <di:waypoint x="615" y="118" />
+        <di:waypoint x="680" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1h9dint_di" bpmnElement="Flow_1h9dint">
+        <di:waypoint x="186" y="118" />
+        <di:waypoint x="240" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1q51lz3_di" bpmnElement="Flow_1q51lz3">
+        <di:waypoint x="340" y="118" />
+        <di:waypoint x="400" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0isywsg_di" bpmnElement="Flow_0isywsg">
+        <di:waypoint x="590" y="143" />
+        <di:waypoint x="590" y="230" />
+        <di:waypoint x="682" y="230" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="598" y="184" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1cob2y3_di" bpmnElement="Flow_1cob2y3">
+        <di:waypoint x="940" y="118" />
+        <di:waypoint x="1012" y="118" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
