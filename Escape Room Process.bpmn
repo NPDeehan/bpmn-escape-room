@@ -34,7 +34,7 @@
     <bpmn:sequenceFlow id="Flow_08bkvlj" sourceRef="Event_1jb7yon" targetRef="Event_1c7su8l" />
     <bpmn:sequenceFlow id="Flow_0mmhtu8" sourceRef="Activity_14d03nz" targetRef="Activity_00qe9ta" />
     <bpmn:sequenceFlow id="Flow_0nh3bzf" sourceRef="Activity_1c4f4ax" targetRef="Gateway_069odf3" />
-    <bpmn:sequenceFlow id="Flow_1dy184d" sourceRef="Gateway_069odf3" targetRef="Activity_14d03nz">
+    <bpmn:sequenceFlow id="Flow_1dy184d" name="Yes" sourceRef="Gateway_069odf3" targetRef="Activity_14d03nz">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=score &gt; 2</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1h9dint" sourceRef="StartEvent_1" targetRef="Activity_0q51eco" />
@@ -148,6 +148,9 @@
       <bpmndi:BPMNEdge id="Flow_1dy184d_di" bpmnElement="Flow_1dy184d">
         <di:waypoint x="615" y="118" />
         <di:waypoint x="680" y="118" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="639" y="100" width="18" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1h9dint_di" bpmnElement="Flow_1h9dint">
         <di:waypoint x="186" y="118" />

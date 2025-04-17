@@ -87,6 +87,22 @@
       }
     },
     {
+      "label": "Another Room Opens..",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_03eosd8",
+        "columns": null
+      },
+      "id": "Field_0k4sidw",
+      "key": "unlockOne",
+      "conditional": {
+        "hide": "=not(bpmn = \"correct\")"
+      },
+      "validate": {
+        "required": true
+      }
+    },
+    {
       "label": "Umm.. It's one of these?",
       "values": [
         {
@@ -121,22 +137,6 @@
       }
     },
     {
-      "label": "Unlock the Door",
-      "type": "checkbox",
-      "layout": {
-        "row": "Row_0sq8q4j",
-        "columns": null
-      },
-      "id": "Field_0k4sidw",
-      "key": "unlockOne",
-      "conditional": {
-        "hide": "=not(bpmn = \"correct\")"
-      },
-      "validate": {
-        "required": true
-      }
-    },
-    {
       "label": "Room Two.. ",
       "components": [
         {
@@ -165,6 +165,22 @@
           },
           "id": "Field_1d03fu3",
           "source": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/1920px-Flag_of_Japan.svg.png"
+        },
+        {
+          "label": "A Key Appears! ",
+          "type": "checkbox",
+          "layout": {
+            "row": "Row_14sbjxf",
+            "columns": null
+          },
+          "id": "Field_0coxr8b",
+          "key": "unlockTwo",
+          "conditional": {
+            "hide": "=not(list contains(flags, \"japan\") and list contains(flags, \"canada\"))"
+          },
+          "validate": {
+            "required": true
+          }
         },
         {
           "label": "Countries You Remember..",
@@ -239,22 +255,6 @@
       "id": "Field_0fifnyw",
       "conditional": {
         "hide": "=not(unlockOne)"
-      }
-    },
-    {
-      "label": "Open Final Room",
-      "type": "checkbox",
-      "layout": {
-        "row": "Row_1g2h5pf",
-        "columns": null
-      },
-      "id": "Field_0coxr8b",
-      "key": "unlockTwo",
-      "conditional": {
-        "hide": "=not(list contains(flags, \"japan\") and list contains(flags, \"canada\"))"
-      },
-      "validate": {
-        "required": true
       }
     },
     {
