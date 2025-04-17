@@ -1,0 +1,22 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "6ad2448"
+  },
+  "schemaVersion": 18,
+  "id": "you-escaped-with-a-low-score-14asrox",
+  "components": [
+    {
+      "text": "# You Escaped the Room!\nBut you could have done better. You managed a score of **{{score}}**. To find out how to improve it go to Operate and check out the DMN table 😉",
+      "type": "text",
+      "layout": {
+        "row": "Row_05nrqov",
+        "columns": null
+      },
+      "id": "Field_017fbim"
+    }
+  ],
+  "type": "default"
+}

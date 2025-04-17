@@ -34,10 +34,10 @@ This BPMN diagram represents an Escape Room game process. Players attempt to esc
 
 Once you clone this repo locally (or just copy all the files) you'll have two options
 
-# One: Camunda Desktop Modeler
+**One: Camunda Desktop Modeler**
 Open this as a process application in your desktop modeler, open up the BPMN file and use the desktop modeler deploy this to either SaaS or SM versions of Camunda
 
-# Two: Camunda Web Modeler
+**Two: Camunda Web Modeler**
 Create a process application in the web modeler called `Escape Room` - You'll see it automatically greats a bpmn process called "Escape Room" that has a `main` tag - this is just a place holder for now.
 Upload all of the `.bpmn`, `.dmn` and `.form` files to the process application. 
 Find the `Escape Room Process` BPMN process and "Reasign as main Process".

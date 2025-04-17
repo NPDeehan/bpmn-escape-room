@@ -16,6 +16,24 @@
         "columns": null
       },
       "id": "Field_1v9tyqe"
+    },
+    {
+      "height": 60,
+      "type": "spacer",
+      "layout": {
+        "row": "Row_1s18qlp",
+        "columns": null
+      },
+      "id": "Field_1mpv6ds"
+    },
+    {
+      "text": "You managed to score **{{score}}** to find out how go to Operate and check out the DMN table",
+      "type": "text",
+      "layout": {
+        "row": "Row_1a1qv5x",
+        "columns": null
+      },
+      "id": "Field_1dkm8k5"
     }
   ],
   "type": "default"

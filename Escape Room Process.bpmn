@@ -26,7 +26,7 @@
       <bpmn:outgoing>Flow_1q51lz3</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:endEvent id="Event_1ibaclx" name="Escaped">
-      <bpmn:incoming>Flow_0isywsg</bpmn:incoming>
+      <bpmn:incoming>Flow_074afb5</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:endEvent id="Event_0dyyogl" name="Escaped with High Score">
       <bpmn:incoming>Flow_1cob2y3</bpmn:incoming>
@@ -44,7 +44,7 @@
       <bpmn:outgoing>Flow_1dy184d</bpmn:outgoing>
       <bpmn:outgoing>Flow_0isywsg</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_0isywsg" name="No" sourceRef="Gateway_069odf3" targetRef="Event_1ibaclx" />
+    <bpmn:sequenceFlow id="Flow_0isywsg" name="No" sourceRef="Gateway_069odf3" targetRef="Activity_0ntyh8e" />
     <bpmn:serviceTask id="Activity_14d03nz" name="Get Prize" zeebe:modelerTemplate="io.camunda.connectors.HttpJson.v2" zeebe:modelerTemplateVersion="10" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE3LjAzMzUgOC45OTk5N0MxNy4wMzM1IDEzLjQ0NzUgMTMuNDI4MSAxNy4wNTI5IDguOTgwNjUgMTcuMDUyOUM0LjUzMzE2IDE3LjA1MjkgMC45Mjc3NjUgMTMuNDQ3NSAwLjkyNzc2NSA4Ljk5OTk3QzAuOTI3NzY1IDQuNTUyNDggNC41MzMxNiAwLjk0NzA4MyA4Ljk4MDY1IDAuOTQ3MDgzQzEzLjQyODEgMC45NDcwODMgMTcuMDMzNSA0LjU1MjQ4IDE3LjAzMzUgOC45OTk5N1oiIGZpbGw9IiM1MDU1NjIiLz4KPHBhdGggZD0iTTQuOTMxMjYgMTQuMTU3MUw2Ljc4MTA2IDMuNzE0NzFIMTAuMTM3NUMxMS4xOTE3IDMuNzE0NzEgMTEuOTgyNCAzLjk4MzIzIDEyLjUwOTUgNC41MjAyN0MxMy4wNDY1IDUuMDQ3MzYgMTMuMzE1IDUuNzMzNTggMTMuMzE1IDYuNTc4OTJDMTMuMzE1IDcuNDQ0MTQgMTMuMDcxNCA4LjE1NTIyIDEyLjU4NDEgOC43MTIxNUMxMi4xMDY3IDkuMjU5MTMgMTEuNDU1MyA5LjYzNzA1IDEwLjYyOTggOS44NDU5TDEyLjA2MTkgMTQuMTU3MUgxMC4zMzE1TDkuMDMzNjQgMTAuMDI0OUg3LjI0MzUxTDYuNTEyNTQgMTQuMTU3MUg0LjkzMTI2Wk03LjQ5NzExIDguNTkyODFIOS4yNDI0OEM5Ljk5ODMyIDguNTkyODEgMTAuNTkwMSA4LjQyMzc0IDExLjAxNzcgOC4wODU2MUMxMS40NTUzIDcuNzM3NTMgMTEuNjc0MSA3LjI2NTEzIDExLjY3NDEgNi42Njg0MkMxMS42NzQxIDYuMTkxMDYgMTEuNTI0OSA1LjgxODExIDExLjIyNjUgNS41NDk1OUMxMC45MjgyIDUuMjcxMTMgMTAuNDU1OCA1LjEzMTkgOS44MDkzNiA1LjEzMTlIOC4xMDg3NEw3LjQ5NzExIDguNTkyODFaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K">
       <bpmn:extensionElements>
         <zeebe:taskDefinition type="io.camunda:http-json:1" retries="3" />
@@ -69,7 +69,7 @@
       <bpmn:incoming>Flow_08bkvlj</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1cob2y3" sourceRef="Activity_00qe9ta" targetRef="Event_0dyyogl" />
-    <bpmn:userTask id="Activity_00qe9ta" name="Collect Prize">
+    <bpmn:userTask id="Activity_00qe9ta" name="Collect Prize &#38; See Score">
       <bpmn:extensionElements>
         <zeebe:userTask />
         <zeebe:formDefinition formId="Form_0cfbp7p" />
@@ -77,6 +77,19 @@
       <bpmn:incoming>Flow_0mmhtu8</bpmn:incoming>
       <bpmn:outgoing>Flow_1cob2y3</bpmn:outgoing>
     </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_074afb5" sourceRef="Activity_0ntyh8e" targetRef="Event_1ibaclx" />
+    <bpmn:userTask id="Activity_0ntyh8e" name="You Escaped with a Low Score">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:formDefinition formId="you-escaped-with-a-low-score-14asrox" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0isywsg</bpmn:incoming>
+      <bpmn:outgoing>Flow_074afb5</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:textAnnotation id="TextAnnotation_0l2le83">
+      <bpmn:text>Temp</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1c5wu9z" associationDirection="None" sourceRef="Activity_14d03nz" targetRef="TextAnnotation_0l2le83" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="EscapeRoom">
@@ -93,12 +106,6 @@
       <bpmndi:BPMNShape id="Activity_1pz8wc1_di" bpmnElement="Activity_0q51eco">
         <dc:Bounds x="240" y="78" width="100" height="80" />
         <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1ibaclx_di" bpmnElement="Event_1ibaclx">
-        <dc:Bounds x="682" y="212" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="679" y="255" width="43" height="14" />
-        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0dyyogl_di" bpmnElement="Event_0dyyogl">
         <dc:Bounds x="1012" y="100" width="36" height="36" />
@@ -124,6 +131,20 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_01txibn_di" bpmnElement="Activity_00qe9ta">
         <dc:Bounds x="840" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ibaclx_di" bpmnElement="Event_1ibaclx">
+        <dc:Bounds x="872" y="282" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="869" y="325" width="43" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_15kkrf1_di" bpmnElement="Activity_0ntyh8e">
+        <dc:Bounds x="680" y="260" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0l2le83_di" bpmnElement="TextAnnotation_0l2le83">
+        <dc:Bounds x="780" y="-10" width="99.99999737370241" height="30.005725854029958" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1jb7yon_di" bpmnElement="Event_1jb7yon">
@@ -162,15 +183,23 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0isywsg_di" bpmnElement="Flow_0isywsg">
         <di:waypoint x="590" y="143" />
-        <di:waypoint x="590" y="230" />
-        <di:waypoint x="682" y="230" />
+        <di:waypoint x="590" y="300" />
+        <di:waypoint x="680" y="300" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="598" y="184" width="15" height="14" />
+          <dc:Bounds x="598" y="223" width="15" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1cob2y3_di" bpmnElement="Flow_1cob2y3">
         <di:waypoint x="940" y="118" />
         <di:waypoint x="1012" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_074afb5_di" bpmnElement="Flow_074afb5">
+        <di:waypoint x="780" y="300" />
+        <di:waypoint x="872" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1c5wu9z_di" bpmnElement="Association_1c5wu9z">
+        <di:waypoint x="765" y="78" />
+        <di:waypoint x="817" y="20" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
